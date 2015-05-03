@@ -1,6 +1,6 @@
 public class MinerNotFull
    extends Miner
-{
+{ 
    private int resource_count;
   
    public MinerNotFull(String name, Point position, int rate, int resource_limit, 

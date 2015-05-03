@@ -2,7 +2,7 @@ public class Quake
    extends Actor
 {
    private int animation_rate;
-
+ 
    public Quake(String name, Point position, int animation_rate)
    {
       super(name, position);

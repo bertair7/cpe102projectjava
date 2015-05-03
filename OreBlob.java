@@ -2,7 +2,7 @@ public class OreBlob
    extends AnimatedActor
 {
    private int animation_rate;
-   
+    
    public OreBlob(String name, Point position, int rate, int animation_rate)
    {
       super(name, position, rate);

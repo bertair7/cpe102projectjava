@@ -1,6 +1,6 @@
 public class AnimatedActor
    extends Actor
-{
+{ 
    private int rate;
 
    public AnimatedActor(String name, Point position, int rate)

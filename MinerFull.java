@@ -2,7 +2,7 @@ public class MinerFull
    extends Miner
 {
    private int resource_count;
-
+ 
    public MinerFull(String name, Point position, int rate, int resource_limit, 
       int animation_rate)
    {

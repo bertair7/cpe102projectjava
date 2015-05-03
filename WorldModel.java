@@ -5,7 +5,7 @@ public class WorldModel
    private String[] entities;
    private Grid occupancy;
    private Grid background;
-  
+   
    public WorldModel(int num_rows, int num_cols, Grid background)
    {
       this.background = Occ_Grid(num_cols, num_rows, background);
@@ -55,5 +55,11 @@ public class WorldModel
       return this.entities;
    }
 
-   public Type
+   public Type find_nearest(Point pt, Class type)
+   {
+      for(Type e : this.entities)
+      {
+      
+      }
+   }
 }

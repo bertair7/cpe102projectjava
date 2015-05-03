@@ -1,5 +1,5 @@
 public class Grid
-{
+{ 
    private final int EMPTY = 0;
    private final int GATHERER = 1;
    private final int GENERATOR = 2;
@@ -7,13 +7,13 @@ public class Grid
 
    private int width;
    private int height;
-   private List< List<int> > cells = new ArrayList<><>();
+   private List<List<boolean>> cells = new LinkedList<List<boolean>>();
 
    public Grid(int width, int height, boolean occupancy_value)
    {
       this.width = width;
       this.height = height;
-      this.cells = [];
+      this.cells.add(new LinkedList<boolean>());
      
       for(int r = 0; r < this.height; r++)
       {

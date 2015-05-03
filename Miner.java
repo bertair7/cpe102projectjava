@@ -1,6 +1,6 @@
 public class Miner
    extends AnimatedActor
-{
+{ 
    private int resource_limit;
    private int animation_rate;
    private int resource_count;

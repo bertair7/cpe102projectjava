@@ -1,6 +1,6 @@
 public class Blacksmith
    extends Actor
-{
+{ 
    private int resource_limit;
    private int resource_count;
    private int resource_distance;
