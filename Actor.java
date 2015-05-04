@@ -3,9 +3,9 @@ public class Actor
 { 
    //private String[] pending_actions;
 
-   public Actor(String name, String[] imgs, Point position)
+   public Actor(String name, Point position)
    {
-      super(name, imgs, position);
+      super(name, position);
    }
    
 }

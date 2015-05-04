@@ -12,16 +12,19 @@ public class AnimatedActor
    public Point next_position(WorldModel world, Point dest_pt)
    {
       int horiz = sign(dest_pt.getX() = this.position.getX());
-      Point new_pt = Point(this.position.getX() + horiz, this.position.getY());
+      Point new_pt = new Point(this.position.getX() + horiz, 
+                     this.position.getY());
       
       if((horiz == 0) || world.is_occupied(new_pt))
       {
          int vert = sign(dest_pt.getY() - this.position.getY());
-         new_pt = Point(this.position.getX(), this.position.getY() + vert);
+         Point new_pt = new Point(this.position.getX(), 
+                        this.position.getY() + vert);
       
          if((vert == 0) || world.is_occupied(new_pt))
          {
-            new_pt = Point(this.position.getX(), this.position.getY());
+            Point new_pt = new Point(this.position.getX(), 
+                           this.position.getY());
          }
       }
       

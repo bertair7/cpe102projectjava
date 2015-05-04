@@ -4,7 +4,7 @@ public class WorldObject
    //private int current_img;
    //private String[] imgs;
 
-   public Entity(String name)
+   public WorldObject(String name)
    {
       this.name = name;
       //this.imgs = imgs;
@@ -26,7 +26,7 @@ public class WorldObject
       return this.name;
    }
 
-   public int sign(x)
+   public static int sign(int x)
    {
       if(x < 0)
       {
@@ -42,7 +42,11 @@ public class WorldObject
       }
    }
 
-   //public boolean adjacent(Point pt1, Point pt2)
+   public static boolean adjacent(Point pt1, Point pt2)
+   {
+      return ((pt1.getX() == pt2.getX() && Math.abs(pt1.getY() - pt2.getY()) == 1) or 
+             (pt1.getY() == pt2.getY() and Math.abs(pt1.getX() - pt2.getX()) == 1));
+   }
 
    //public img get_image(entity)
 }
