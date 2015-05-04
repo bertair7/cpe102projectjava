@@ -1,16 +1,18 @@
+import java.util.*;
+
 public class WorldModel
 {
    private int num_rows;
    private int num_cols;
-   private String[] entities;
+   private List<WorldEntity> entities;
    private Grid occupancy;
    
    public WorldModel(int num_rows, int num_cols)
    {
       this.num_rows = num_rows;
       this.num_cols = num_cols;
-      this.entities = [];
-      this.occupancy = new Grid(num_cols, num_rows, Null);
+      this.entities = new ArrayList<WorldEntity>();
+      this.occupancy = new Grid(num_cols, num_rows, null);
    }
 
    public boolean within_bounds(Point pt)
@@ -21,10 +23,10 @@ public class WorldModel
 
    public boolean is_occupied(Point pt)
    {
-      return (this.within_bounds(pt) && this.occupancy.get_cell(pt) != None);
+      return (this.within_bounds(pt) && this.occupancy.get_cell(pt) != null);
    }
-
-   public Background get_background(Point pt)
+/*
+   public WorldObject get_background(Point pt)
    {
       if(this.within_bounds(pt))
       {
@@ -32,15 +34,15 @@ public class WorldModel
       }
    }
 
-   public Background set_background(Point pt, Background bgnd)
+   public WorldObject set_background(Point pt, WorldObject bgnd)
    {
       if(this.within_bounds(pt))
       {
          this.background.set_cell(pt, bgnd);
       }
    }
-
-   public Background get_tile_occupant(Point pt)
+*/
+   public WorldEntity get_tile_occupant(Point pt)
    {
       if(this.within_bounds(pt))
       {
@@ -48,31 +50,33 @@ public class WorldModel
       }
    }
    
-   public String[] get_entities()
+   public List<WorldEntity> get_entities()
    {
       return this.entities;
    }
 
-   public WorldObject find_nearest(Point pt, WorldObject type)
+   public WorldEntity find_nearest(Point pt, WorldEntity type)
    {
-      List[WorldObject][int] oftype = new List[WorldObject][int]();
-      for(WorldObject e : this.entities)
+      List<Integer> entity_dists = new ArrayList<Integer>();
+      List<WorldEntity> entity = new ArrayList<WorldEntity>();
+      for(WorldEntity e : this.entities)
       {
-         if(e instanceof type)
+         if(e.getClass().equals(type.getClass()))
          {
-            oftype.add([e][Utility.distance_sq(pt, e.get_position())];
+            entity_dists.add(Utility.distance_sq(pt, e.get_position()));
+            entity.add(e);
          }
       }
-      return nearest_entity(oftype);
+      return Utility.nearest_entity(entity, entity_dists);
    }
 
    public List<Point> move_entity(WorldEntity entity, Point pt)
    {
-      List<Point> tiles = new List<Point>();
+      List<Point> tiles = new LinkedList<Point>();
       if(this.within_bounds(pt))
       {
          Point old_pt = entity.get_position();
-         this.occupancy.set_cell(old_pt, None);
+         this.occupancy.set_cell(old_pt, null);
          tiles.add(old_pt);
          this.occupancy.set_cell(pt, entity);
          tiles.add(pt);
@@ -88,12 +92,12 @@ public class WorldModel
 
    public void remove_entity_at(Point pt)
    {
-      if(this.within_bounds(pt) && this.occupancy.get_cell(pt) != Null)
+      if(this.within_bounds(pt) && this.occupancy.get_cell(pt) != null)
       {
          WorldEntity entity = this.occupancy.get_cell(pt);
          entity.set_position(new Point(-1, -1));
          this.entities.remove(entity);
-         this.occupancy.set_cell(pt, Null);
+         this.occupancy.set_cell(pt, null);
       }
    }
 }

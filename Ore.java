@@ -3,7 +3,7 @@ public class Ore
 {
    private int rate;
  
-   public Ore(String name, Point position, int rate = 5000)
+   public Ore(String name, Point position, int rate)
    {
       super(name, position);
       this.rate = rate;

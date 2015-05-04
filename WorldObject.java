@@ -44,8 +44,10 @@ public class WorldObject
 
    public static boolean adjacent(Point pt1, Point pt2)
    {
-      return ((pt1.getX() == pt2.getX() && Math.abs(pt1.getY() - pt2.getY()) == 1) or 
-             (pt1.getY() == pt2.getY() and Math.abs(pt1.getX() - pt2.getX()) == 1));
+      return ((pt1.getX() == pt2.getX() && 
+             Math.abs(pt1.getY() - pt2.getY()) == 1) ||
+             (pt1.getY() == pt2.getY() && 
+             Math.abs(pt1.getX() - pt2.getX()) == 1));
    }
 
    //public img get_image(entity)

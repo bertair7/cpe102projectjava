@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Grid
 { 
    private static final int EMPTY = 0;
@@ -7,30 +9,30 @@ public class Grid
 
    private int width;
    private int height;
-   private List<List<boolean>> cells = new LinkedList<List<boolean>>();
+   private List<List<WorldEntity>> cells = new LinkedList<List<WorldEntity>>();
 
-   public Grid(int width, int height, boolean occupancy_value)
+   public Grid(int width, int height, WorldEntity occupancy_value)
    {
       this.width = width;
       this.height = height;
      
       for(int r = 0; r < this.height; r++)
       {
-         this.cells.add(new LinkedList<boolean>());
+         this.cells.add(new LinkedList<WorldEntity>());
          for(int c = 0; c < this.width; c++)
          {
-            this.cells[r].add(occupancy_value);
+            this.cells.get(r).add(occupancy_value);
          }
       }
    }
 
-   public void set_cell(Point point, boolean value)
+   public void set_cell(Point point, WorldEntity value)
    {
-      this.cells[point.getX()][point.getY()] = value;
+      this.cells.get(point.getY()).set(point.getX(), value);
    }
  
-   public boolean get_cell(Point point)
+   public WorldEntity get_cell(Point point)
    {
-      return this.cells[point.getX()][point.getY()];
+      return this.cells.get(point.getX()).get(point.getY());
    }
 }

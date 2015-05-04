@@ -1,26 +1,28 @@
+import java.util.*;
+
 public class Utility
 {
-   public static WorldObject nearest_entity(List[WorldObject][int] entity_dists)
+   public static WorldEntity nearest_entity(List<WorldEntity> 
+      entity, List<Integer> entity_dists)
    {
-      WorldObject nearest;
-      if(entity_dists.length > 0)
+      if(entity_dists.size() > 0)
       {
-         WorldObject pair = entity_dists.get(0);
-         for(int other : entity_dists[0])
+         WorldEntity min = entity.get(0);
+         int pair = entity_dists.get(0);
+         for(int i = 1; i < entity_dists.size(); i++)
          {
-            if(other[1] < pair[1])
+            if(entity_dists.get(i) < pair)
             {
-               pair = other;
+               min = entity.get(i);
             }
          }
-         nearest = pair[0];
+         return min;
       }
       else
       {
-         return Null;
+         return null;
       }
-      
-      return nearest;
+    
    }
 
    public static int distance_sq(Point p1, Point p2)

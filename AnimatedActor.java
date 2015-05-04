@@ -11,24 +11,33 @@ public class AnimatedActor
 
    public Point next_position(WorldModel world, Point dest_pt)
    {
-      int horiz = sign(dest_pt.getX() = this.position.getX());
-      Point new_pt = new Point(this.position.getX() + horiz, 
-                     this.position.getY());
+      int horiz = sign(dest_pt.getX() - this.get_position().getX());
+      Point new_pt = new Point(this.get_position().getX() + horiz, 
+                     this.get_position().getY());
       
       if((horiz == 0) || world.is_occupied(new_pt))
       {
-         int vert = sign(dest_pt.getY() - this.position.getY());
-         Point new_pt = new Point(this.position.getX(), 
-                        this.position.getY() + vert);
+         int vert = sign(dest_pt.getY() - this.get_position().getY());
+         Point new_pt2 = new Point(this.get_position().getX(), 
+                        this.get_position().getY() + vert);
       
-         if((vert == 0) || world.is_occupied(new_pt))
+         if((vert == 0) || world.is_occupied(new_pt2))
          {
-            Point new_pt = new Point(this.position.getX(), 
-                           this.position.getY());
+            Point new_pt3 = new Point(this.get_position().getX(), 
+                           this.get_position().getY());
+            return new_pt3;
+         }
+         else
+         {
+            return new_pt2;
          }
       }
+      else
+      {
+         return new_pt;
+      }
       
-      return new_pt;
+      
    }
 
    public int get_rate()

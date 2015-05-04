@@ -11,6 +11,6 @@ public class OreBlob
 
    public int get_animation_rate()
    {
-      return this.get_animation_rate;
+      return this.animation_rate;
    }
 }
