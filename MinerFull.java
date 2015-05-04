@@ -9,4 +9,11 @@ public class MinerFull
       super(name, position, rate, resource_limit, animation_rate);
       this.resource_count = resource_limit;
    }
+
+   public int get_resource_count()
+   {  
+      return this.resource_count;
+   }
+
+
 }

@@ -19,6 +19,7 @@ public class TestCases
    }
    
    @Test
+   //resource_distance = 1
    public void testBlacksmith()
    {
       Point p1 = new Point(4, 4);
@@ -36,37 +37,71 @@ public class TestCases
    @Test
    public void testGrid()
    {
-      //List<List<WorldEntity>> cells = new LinkedList<List<WorldEntity>>
+      //List<List<WorldEntity>> cells = new LinkedList<List<WorldEntity>>      
    }
    
    @Test
    public void testMinerFull()
    {
-      //MinerFull mf = new MinerFull(
+      MinerFull willy = new MinerFull("MinerFull", new Point(7, 1), 5, 2, 5);
+      MinerFull billy = new MinerFull("MinerFull", new Point(4, 10), 5, 2, 5);
+      
+      assertEquals(willy.get_resource_count(), 2);
+      assertEquals(billy.get_resource_limit(), 2);
+      assertEquals(willy.get_position().getX(), 7);
+      assertEquals(billy.get_position().getY(), 10);
+      assertTrue(willy.get_rate() == billy.get_rate());
+      assertTrue(willy.get_animation_rate() == billy.get_animation_rate());
    }
 
    @Test
    public void testMinerNotFull()
    {
-      //MinerNotFull mnf = new MinerNotFull(
+      MinerNotFull milton = new MinerNotFull("MinerNotFull", new Point(5, 5), 
+                            5, 2, 5);
+      MinerNotFull harris = new MinerNotFull("MinerNotFull", new Point(9, -3),
+                            5, 2, 5);
+      
+      assertEquals(milton.get_resource_count(), 0);
+      assertEquals(harris.get_resource_limit(), 2);
+      assertEquals(milton.get_position().getX(), 5);
+      assertEquals(harris.get_position().getY(), -3);
+      assertTrue(milton.get_rate() == harris.get_rate());
+      assertTrue(harris.get_animation_rate() == milton.get_animation_rate());
    }
 
    @Test
    public void testObstacle()
    {
-      //Obstacle obs = new Obstacle(
+      Obstacle rock = new Obstacle("Obstacle", new Point(10, 10));
+      Obstacle pool = new Obstacle("Obstacle", new Point(3, 8));
+
+      assertTrue(rock.get_name() == "Obstacle");
+      assertTrue(pool.get_name() == "Obstacle");
+      assertEquals(rock.get_position().getY(), 10);
+      assertEquals(pool.get_position().getX(), 3);
    }
 
    @Test
    public void testOreBlob()
    {
-      //OreBlob ob = new OreBlob(
+      OreBlob ob = new OreBlob("OreBlob", new Point(9, 1), 300, 200);
+      OreBlob wan = new OreBlob("OreBlob", new Point(7, 0), 50, 100);
+
+      assertEquals(ob.get_animation_rate(), 200);
+      assertEquals(wan.get_animation_rate(), 100);
+      assertEquals(ob.get_rate(), 300);
+      assertEquals(wan.get_rate(), 50);
    }
 
    @Test
    public void testOre()
    {
-      //Ore ore = new Ore(
+      Ore oreo = new Ore("Ore", new Point(3, 4), 5000);
+      Ore milk = new Ore("Ore", new Point(6, 8), 2000);
+   
+      assertEquals(oreo.get_rate(), 5000);
+      assertEquals(milk.get_rate(), 2000);
    }
 
    @Test
@@ -84,13 +119,29 @@ public class TestCases
    @Test
    public void testQuake()
    {
-      //Quake q = new Quake(
+      Quake earth = new Quake("Quake", new Point(6, 6), 12);
+      Quake fire = new Quake("Quake", new Point(0, 1), 44);
+    
+      assertEquals(earth.get_animation_rate(), 12);
+      assertEquals(fire.get_animation_rate(), 44);
+      assertEquals(earth.get_position().getX(), 6);
+      assertEquals(fire.get_position().getY(), 1);
+      assertTrue(earth.get_name() == fire.get_name());
    }
 
    @Test
+   //resource_distance = 1
    public void testVein()
    {
-      //Vein v = new Vein(
+      Vein flabby = new Vein("Vein", new Point(3, 5), 10000, 1);
+      Vein bird = new Vein("Vein", new Point(6, 7), 101, 1);
+      
+      assertEquals(flabby.get_rate(), 10000);
+      assertEquals(bird.get_rate(), 101);
+      assertEquals(flabby.get_position().getX(), 3);
+      assertEquals(bird.get_position().getY(), 7);
+      assertTrue(bird.get_resource_distance() == 
+         flabby.get_resource_distance());
    }
 
    @Test

@@ -18,11 +18,6 @@ public class Miner
       this.resource_count = n;
    }
 
-   public int get_resource_count()
-   {
-      return this.resource_count;
-   }
-
    public int get_resource_limit()
    {
       return this.resource_limit;

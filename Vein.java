@@ -3,7 +3,7 @@ public class Vein
 {
    private int resource_distance;
  
-   public Vein(String name, Point position, int rate, int resource_dist = 1)
+   public Vein(String name, Point position, int rate, int resource_dist)
    {
       super(name, position, rate);
       this.resource_distance = resource_dist;

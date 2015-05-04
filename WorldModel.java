@@ -48,6 +48,10 @@ public class WorldModel
       {
          return this.occupancy.get_cell(pt);
       }
+      else
+      {
+         return null;
+      }
    }
    
    public List<WorldEntity> get_entities()
