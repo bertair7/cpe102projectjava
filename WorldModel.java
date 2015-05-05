@@ -11,7 +11,7 @@ public class WorldModel
    {
       this.num_rows = num_rows;
       this.num_cols = num_cols;
-      this.entities = new ArrayList<WorldEntity>();
+      this.entities = new LinkedList<WorldEntity>();
       this.occupancy = new Grid(num_cols, num_rows, null);
    }
 
@@ -23,7 +23,7 @@ public class WorldModel
 
    public boolean is_occupied(Point pt)
    {
-      return ((within_bounds(pt)) && (this.occupancy.get_cell(pt) != null));
+      return (within_bounds(pt) && (this.occupancy.get_cell(pt) != null));
    }
 /*
    public WorldObject get_background(Point pt)

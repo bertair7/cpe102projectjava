@@ -161,6 +161,10 @@ public class TestCases
       
       WorldModel world = new WorldModel(15, 15);
       world.add_entity(mel);
+      List<WorldEntity> list = new LinkedList<WorldEntity>();
+      list.add(mel);
+      assertEquals(world.get_entities(), list);
+     
       world.add_entity(george);
       world.add_entity(ob);
       world.add_entity(wan);
@@ -174,14 +178,14 @@ public class TestCases
       
       assertTrue(world.within_bounds(p1));
       assertTrue(world.within_bounds(p2));
-      //assertTrue(world.is_occupied(p1));
-      //assertTrue(world.is_occupied(p2));
+      assertTrue(world.is_occupied(p1));
+      assertTrue(world.is_occupied(p2));
 
       Point p3 = new Point(0, 0);
       assertEquals(world.get_tile_occupant(p3), null);
-      //assertEquals(world.get_tile_occupant(p2), aaron);
-      //assertEquals(world.find_nearest(mel.get_position(), milk), milk);
-      //assertEquals(world.find_nearest(earth.get_position(), pool), pool);
+      assertEquals(world.get_tile_occupant(p2), aaron);
+      assertEquals(world.find_nearest(mel.get_position(), milk), milk);
+      assertEquals(world.find_nearest(earth.get_position(), pool), pool);
      
       List<Point> move = new LinkedList<Point>();
       move.add(flabby.get_position());

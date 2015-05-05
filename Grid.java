@@ -21,7 +21,7 @@ public class Grid
          this.cells.add(new LinkedList<WorldEntity>());
          for(int c = 0; c < this.width; c++)
          {
-            this.cells.get(r).add(occupancy_value);
+            this.cells.get(r).add(c, occupancy_value);
          }
       }
    }
@@ -33,6 +33,6 @@ public class Grid
  
    public WorldEntity get_cell(Point point)
    {
-      return this.cells.get(point.getX()).get(point.getY());
+      return this.cells.get(point.getY()).get(point.getX());
    }
 }
