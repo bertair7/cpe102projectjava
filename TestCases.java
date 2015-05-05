@@ -2,9 +2,11 @@ import java.util.Comparator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.Before;
@@ -18,8 +20,8 @@ public class TestCases
       assertEquals(bgnd.get_name(), "Background");
    }
    
-   @Test
    //resource_distance = 1
+   @Test
    public void testBlacksmith()
    {
       Point p1 = new Point(4, 4);
@@ -32,12 +34,6 @@ public class TestCases
       assertTrue(aaron.get_rate() == 100);
       assertTrue(aaron.get_resource_distance() == 1);
       assertEquals(walter.get_rate(), aaron.get_rate());
-   }
-
-   @Test
-   public void testGrid()
-   {
-      //List<List<WorldEntity>> cells = new LinkedList<List<WorldEntity>>      
    }
    
    @Test
@@ -129,8 +125,8 @@ public class TestCases
       assertTrue(earth.get_name() == fire.get_name());
    }
 
-   @Test
    //resource_distance = 1
+   @Test
    public void testVein()
    {
       Vein flabby = new Vein("Vein", new Point(3, 5), 10000, 1);
@@ -146,8 +142,62 @@ public class TestCases
 
    @Test
    public void testWorldModel()
-   {
-      //WorldModel world = new WorldModel(
+   { 
+      WorldEntity mel = new MinerNotFull("MinerNotFull", new Point(3, 2), 
+         5, 2, 5);
+      WorldEntity george = new MinerFull("MinerFull", new Point(9, 4), 
+         5, 2, 5);
+      WorldEntity ob = new OreBlob("OreBlob", new Point(2, 1), 300, 200);
+      WorldEntity wan = new OreBlob("OreBlob", new Point(7, 0), 50, 100);
+      WorldEntity oreo = new Ore("Ore", new Point(7, 1), 50);
+      Point p1 = new Point(3, 1);
+      WorldEntity milk = new Ore("Ore", p1, 200);
+      WorldEntity rock = new Obstacle("Obstacle", new Point(10, 10));
+      WorldEntity pool = new Obstacle("Obstacle", new Point(3, 7));
+      WorldEntity flabby = new Vein("Vein", new Point(3, 5), 10000, 1);
+      Point p2 = new Point(1, 0);
+      WorldEntity aaron = new Blacksmith("Blacksmith", p2, 100, 10);
+      WorldEntity earth = new Quake("Quake", new Point(6, 6), 12);
+      
+      WorldModel world = new WorldModel(15, 15);
+      world.add_entity(mel);
+      world.add_entity(george);
+      world.add_entity(ob);
+      world.add_entity(wan);
+      world.add_entity(oreo);
+      world.add_entity(milk);
+      world.add_entity(rock);
+      world.add_entity(pool);
+      world.add_entity(flabby);
+      world.add_entity(aaron);
+      world.add_entity(earth);
+      
+      assertTrue(world.within_bounds(p1));
+      assertTrue(world.within_bounds(p2));
+      //assertTrue(world.is_occupied(p1));
+      //assertTrue(world.is_occupied(p2));
+
+      Point p3 = new Point(0, 0);
+      assertEquals(world.get_tile_occupant(p3), null);
+      //assertEquals(world.get_tile_occupant(p2), aaron);
+      //assertEquals(world.find_nearest(mel.get_position(), milk), milk);
+      //assertEquals(world.find_nearest(earth.get_position(), pool), pool);
+     
+      List<Point> move = new LinkedList<Point>();
+      move.add(flabby.get_position());
+      Point p4 = new Point(2, 5);
+      move.add(p4);
+      assertEquals(world.move_entity(flabby, p4), move); 
+      List<Point> move2 = new LinkedList<Point>();
+      move2.add(george.get_position());
+      Point p5 = new Point(8, 4);
+      move2.add(p5);
+      assertEquals(world.move_entity(george, p5), move2);
+
+      world.remove_entity(pool);
+      assertEquals(world.get_tile_occupant(pool.get_position()), null);
+      world.remove_entity(wan);
+      assertEquals(world.get_tile_occupant(wan.get_position()), null);
    }
 
 }

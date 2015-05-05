@@ -23,12 +23,12 @@ public class WorldModel
 
    public boolean is_occupied(Point pt)
    {
-      return (this.within_bounds(pt) && this.occupancy.get_cell(pt) != null);
+      return ((within_bounds(pt)) && (this.occupancy.get_cell(pt) != null));
    }
 /*
    public WorldObject get_background(Point pt)
    {
-      if(this.within_bounds(pt))
+      if(within_bounds(pt))
       {
          return this.background.get_cell(pt);
       }
@@ -36,23 +36,12 @@ public class WorldModel
 
    public WorldObject set_background(Point pt, WorldObject bgnd)
    {
-      if(this.within_bounds(pt))
+      if(within_bounds(pt))
       {
          this.background.set_cell(pt, bgnd);
       }
    }
 */
-   public WorldEntity get_tile_occupant(Point pt)
-   {
-      if(this.within_bounds(pt))
-      {
-         return this.occupancy.get_cell(pt);
-      }
-      else
-      {
-         return null;
-      }
-   }
    
    public List<WorldEntity> get_entities()
    {
@@ -74,10 +63,25 @@ public class WorldModel
       return Utility.nearest_entity(entity, entity_dists);
    }
 
+   public void add_entity(WorldEntity entity)
+   {
+      Point pt = entity.get_position();
+      if(within_bounds(pt))
+      {
+         //WorldEntity old_entity = this.occupancy.get_cell(pt);
+         //if(old_entity != null)
+         //{
+         //   old_entity.clear_pending_actions();
+         //}
+         this.occupancy.set_cell(pt, entity);
+         this.entities.add(entity);
+      }
+   }
+
    public List<Point> move_entity(WorldEntity entity, Point pt)
    {
       List<Point> tiles = new LinkedList<Point>();
-      if(this.within_bounds(pt))
+      if(within_bounds(pt))
       {
          Point old_pt = entity.get_position();
          this.occupancy.set_cell(old_pt, null);
@@ -89,14 +93,26 @@ public class WorldModel
       return tiles;
    }
 
+   public WorldEntity get_tile_occupant(Point pt)
+   {
+      if(within_bounds(pt))
+      {
+         return this.occupancy.get_cell(pt);
+      }
+      else
+      {
+         return null;
+      }
+   }
+
    public void remove_entity(WorldEntity entity)
    {
-      this.remove_entity_at(entity.get_position());
+      remove_entity_at(entity.get_position());
    }
 
    public void remove_entity_at(Point pt)
    {
-      if(this.within_bounds(pt) && this.occupancy.get_cell(pt) != null)
+      if(within_bounds(pt) && this.occupancy.get_cell(pt) != null)
       {
          WorldEntity entity = this.occupancy.get_cell(pt);
          entity.set_position(new Point(-1, -1));
