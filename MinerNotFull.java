@@ -1,3 +1,7 @@
+import processing.core.*;
+import java.util.List;
+import java.util.ArrayList;
+
 public class MinerNotFull
    extends Miner
 { 
@@ -6,7 +10,7 @@ public class MinerNotFull
    public MinerNotFull(String name, List<PImage> images, Point position, int 
       rate, int resource_limit, int animation_rate)
    {
-      super(name, position, rate, resource_limit, animation_rate);
+      super(name, images, position, rate, resource_limit, animation_rate);
       this.resource_count = 0;
    }
 
@@ -24,7 +28,7 @@ public class MinerNotFull
       }
 
       Point ore_pt = ore.get_position();
-      if(adjacent(entity_pt, ore_pt)
+      if(adjacent(entity_pt, ore_pt))
       {
          this.set_resource_count(this.get_resource_count()+ 1);
          actions.remove_entity(world, ore);

@@ -1,3 +1,7 @@
+import processing.core.*;
+import java.util.List;
+import java.util.ArrayList;
+
 public class Quake
    extends Actor
 {
@@ -18,7 +22,7 @@ public class Quake
       return this.animation_rate;
    }
 
-   public void _schedule(WorldModel world, int ticks)
+   public void schedule(WorldModel world, int ticks)
    {
       Actions.schedule_animation(world, this, QUAKE_STEPS);
       Actions.schedule_action(world, this, 

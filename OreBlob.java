@@ -1,3 +1,7 @@
+import processing.core.*;
+import java.util.List;
+import java.util.ArrayList;
+
 public class OreBlob
    extends AnimatedActor
 {
@@ -19,16 +23,16 @@ public class OreBlob
    public WorldEntity _create_quake(WorldModel world, Point pt, int ticks, 
       List<PImage> i_store)
    {
-      WorldEntity quake = new Quake("quake", pt, i_store.get_images(i_store, 
-         "quake"), QUAKE_ANIMATION_RATE);
-      quake._schedule(world ticks);
+      WorldEntity quake = new Quake("quake", pt, ImageStore.get_images
+         (i_store, "quake"), QUAKE_ANIMATION_RATE);
+      quake.schedule(world, ticks);
       return quake;
    }
 
-   public void _schedule(WorldModel world, int ticks, List<PImage> i_store)
+   public void schedule(WorldModel world, int ticks, List<PImage> i_store)
    {
-      Actions.schedule_action(world, this, Actions.create_ore_blob_action(world, 
-         this, i_store), ticks + this.get_rate());
+      Actions.schedule_action(world, this, Actions.create_ore_blob_action
+         (world, this, i_store), ticks + this.get_rate());
       Actions.schedule_animation(world, this);
    }
 
@@ -51,7 +55,7 @@ public class OreBlob
          Point new_pt = this.next_position(world, vein_pt);
      	 WorldEntity old_entity = world.get_tile_occupant(new_pt);
 
-         if(old_entity instanceof Ore.class)
+         if(old_entity instanceof Ore)
          {
 	    Actions.remove_entity(world, old_entity);
 	 }

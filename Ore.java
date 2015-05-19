@@ -1,3 +1,7 @@
+import processing.core.*;
+import java.util.List;
+import java.util.ArrayList;
+
 public class Ore
    extends Actor
 {
@@ -18,7 +22,7 @@ public class Ore
       return this.rate;
    }
 
-   public WorldEntity _create_blob(WorldModel world, String name, Point pt, 
+   public WorldEntity create_blob(WorldModel world, String name, Point pt, 
       int rate, int ticks, List<PImage> i_store)
    {
       Random rand = new Random();
@@ -27,13 +31,13 @@ public class Ore
       int randomNum = rand.nextInt((max - min) + 1) + min;
       randomNum *= BLOB_ANIMATION_RATE_SCALE;
       
-      WorldEntity blob = new OreBlob(name, pt, rate, i_store.get_images(i_store, 
-         "ore"), randomNum);
-      blob._schedule(world, ticks, i_store);
+      WorldEntity blob = new OreBlob(name, pt, rate, ImageStore.get_images(
+         i_store, "ore"), randomNum);
+      blob.schedule(world, ticks, i_store);
       return blob;
    }
 
-   public void _schedule(WorldModel world, int ticks, List<PImage> i_store)
+   public void schedule(WorldModel world, int ticks, List<PImage> i_store)
    {
       Actions.schedule_action(world, this, 
          Actions.create_ore_transform_action(world,this, i_store), ticks + 

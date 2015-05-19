@@ -1,4 +1,5 @@
 import java.util.*;
+import processing.core.*;
 
 public class WorldModel
 {
@@ -37,7 +38,7 @@ public class WorldModel
       return (within_bounds(pt) && (this.occupancy.get_cell(pt) != null));
    }
 
-   public WorldObject get_background(Point pt)
+   public PImage get_background(Point pt)
    {
       if(within_bounds(pt))
       {
@@ -146,7 +147,7 @@ public class WorldModel
    public void update_on_time(int ticks)
    {  
       //tiles = [];    
-      Action next = this.action_queue.head();
+      ListItem next = this.action_queue.head();
       while((next != null) && next.ord < ticks)
       {
          this.action_queue.pop();

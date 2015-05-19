@@ -1,3 +1,7 @@
+import processing.core.*;
+import java.util.List;
+import java.util.ArrayList;
+
 public class Miner
    extends AnimatedActor
 { 
@@ -28,10 +32,11 @@ public class Miner
       return this.animation_rate;
    }
 
-   public void _schedule(WorldModel world, int ticks, List<PImage> i_store)
+   public void schedule(WorldModel world, int ticks, List<PImage> i_store)
    {
-      Actions.schedule_action(world, this, Actions.create_miner_action(world, 
-         this, i_store), ticks + this.get_rate());
-      Actions.schedule_animation(world, this);
+      Actions.schedule_action(world, WorldEntity this, 
+         Actions.create_miner_action(world, this, i_store), ticks + 
+         this.get_rate());
+      Actions.schedule_animation(world, WorldEntity this);
    }
 }
