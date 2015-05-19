@@ -1,11 +1,14 @@
+import processing.core.*;
+import java.util.*;
+
 public class WorldEntity
    extends WorldObject
 {
    private Point position;
  
-   public WorldEntity(String name, Point position)
+   public WorldEntity(String name, List<PImage> images, Point position)
    {
-      super(name);
+      super(name, images);
       this.position = position;
    }
 

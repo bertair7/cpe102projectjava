@@ -5,10 +5,10 @@ public class Miner
    private int animation_rate;
    private int resource_count;
 
-   public Miner(String name, Point position, int rate, int resource_limit, 
-      int animation_rate)
+   public Miner(String name, List<PImage> images, Point position, int rate, int 
+      resource_limit, int animation_rate)
    {
-      super(name, position, rate);
+      super(name, images, position, rate);
       this.resource_limit = resource_limit;
       this.animation_rate = animation_rate;
    }
@@ -28,4 +28,10 @@ public class Miner
       return this.animation_rate;
    }
 
+   public void _schedule(WorldModel world, int ticks, List<PImage> i_store)
+   {
+      Actions.schedule_action(world, this, Actions.create_miner_action(world, 
+         this, i_store), ticks + this.get_rate());
+      Actions.schedule_animation(world, this);
+   }
 }

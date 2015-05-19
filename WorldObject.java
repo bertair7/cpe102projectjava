@@ -1,26 +1,30 @@
+import java.util.List;
+import java.util.ArrayList;
+import processing.core.*;
+
 public class WorldObject
 {
    private String name;
-   //private int current_img;
-   //private String[] imgs;
+   protected int current_img;
+   protected List<PImage> imgs;
 
-   public WorldObject(String name)
+   public WorldObject(String name, List<PImage> imgs)
    {
       this.name = name;
-      //this.imgs = imgs;
-      //this.current_img = 0;
+      this.imgs = imgs;
+      this.current_img = 0;
    }
 
-/*   public String[] get_images()
+   public List<PImage> get_images()
    {
       return this.imgs;
    }
 
-   public String get_image()
+   public PImage get_image()
    {
-      return this.imgs[this.current_img];
+      return this.imgs.get(this.current_img);
    }
-*/
+
    public String get_name()
    {
       return this.name;
@@ -49,6 +53,4 @@ public class WorldObject
              (pt1.getY() == pt2.getY() && 
              Math.abs(pt1.getX() - pt2.getX()) == 1));
    }
-
-   //public img get_image(entity)
 }

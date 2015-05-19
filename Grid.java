@@ -11,7 +11,7 @@ public class Grid
    private int height;
    private List<List<WorldEntity>> cells = new LinkedList<List<WorldEntity>>();
 
-   public Grid(int width, int height, WorldEntity occupancy_value)
+   public Grid(int width, int height, WorldObject occupancy_value)
    {
       this.width = width;
       this.height = height;

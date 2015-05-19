@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Math;
 
 public class Utility
 {
@@ -30,5 +31,10 @@ public class Utility
       int dX = (p1.getX() - p2.getX()) * (p1.getX() - p2.getX());
       int dY = (p1.getY() - p2.getY()) * (p1.getY() - p2.getY());
       return dX + dY;
+   }
+
+   public static PImage get_image(WorldEntity entity)
+   { 
+      return entity.imgs.get(entity.current_img);
    }
 }

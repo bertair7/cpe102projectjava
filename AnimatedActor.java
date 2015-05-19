@@ -1,11 +1,12 @@
 public class AnimatedActor
    extends Actor
 { 
-   private int rate;
+   protected int rate;
 
-   public AnimatedActor(String name, Point position, int rate)
+   public AnimatedActor(String name, List<PImage> images, Point position, int 
+      rate)
    {
-      super(name, position);
+      super(name, images, position);
       this.rate = rate;
    }
 

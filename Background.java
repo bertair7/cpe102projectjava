@@ -1,8 +1,8 @@
 public class Background
    extends WorldObject
 {
-   public Background(String name)
+   public Background(String name, List<PImage> imgs)
    {
-      super(name);
+      super(name, imgs);
    }
 }
